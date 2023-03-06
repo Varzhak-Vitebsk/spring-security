@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: spring-basics
+  profiles:
+    active: QA
 
 management:
   endpoints:
