@@ -1,10 +1,10 @@
 package com.epam.edu.storage;
 
-import com.epam.edu.storage.model.DataEntity;
+import com.epam.edu.storage.model.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DataRepository extends JpaRepository<DataEntity, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
 }

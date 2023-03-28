@@ -14,7 +14,9 @@ public class ActuatorConfig {
   public SecurityWebFilterChain securityWebFilterChain(
       ServerHttpSecurity http) {
     return http.authorizeExchange()
-        .pathMatchers("/actuator/**").permitAll()
+        .pathMatchers("/actuator/health").permitAll()
+        .pathMatchers("/actuator/info").hasAuthority(Authority.INFO.name())
+        .pathMatchers("/actuator/env").hasAuthority(Authority.ADMIN.name())
         .anyExchange().authenticated()
         .and().build();
   }

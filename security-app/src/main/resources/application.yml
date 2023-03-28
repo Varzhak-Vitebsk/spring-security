@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-basics
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://${POSTGRES_URL:localhost:5432/postgres}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+    hikari:
+      schema: ${POSTGRES_SCHEMA:subscription}
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+      pool-name: datasource-subscription
+  jpa:
+    database: postgresql
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        physical_naming_strategy: com.vladmihalcea.hibernate.naming.CamelCaseToSnakeCaseNamingStrategy
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    com.epam: ${LOGGING_LEVEL_COM_EPAM:DEBUG}
