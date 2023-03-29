@@ -10,7 +10,7 @@ spring:
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
     hikari:
-      schema: ${POSTGRES_SCHEMA:subscription}
+      schema: ${POSTGRES_SCHEMA:security}
       maximum-pool-size: 10
       minimum-idle: 5
       connection-timeout: 30000
@@ -26,6 +26,15 @@ spring:
     hibernate:
       ddl-auto: none
     generate-ddl: false
+  liquibase:
+    enabled: true
+    change-log: classpath:migrations/security.xml
+  jackson:
+    default-property-inclusion: non_null
+  codec:
+    max-in-memory-size: 1048576
+    max-request-size: 4400390
+
 
 management:
   endpoints:
