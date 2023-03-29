@@ -7,7 +7,7 @@ import org.springframework.security.authentication.UserDetailsRepositoryReactive
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @Configuration
@@ -36,8 +36,7 @@ public class WebSecurityConfig {
   @Bean
   public UserDetailsRepositoryReactiveAuthenticationManager authenticationManager(ReactiveUserDetailsService userDetailsService) {
     var authManager = new UserDetailsRepositoryReactiveAuthenticationManager(userDetailsService);
-//    authManager.setPasswordEncoder(new BCryptPasswordEncoder(10));
-    authManager.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+    authManager.setPasswordEncoder(new BCryptPasswordEncoder(10));
     return authManager;
 
   }
